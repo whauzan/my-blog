@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 function Header() {
     return (
-        <div className="container mx-auto mb-8">
-            <div className="w-full shadow-lg inline-block py-8">
+        <div className="container mx-auto mb-8 fixed z-10 bg-blue shadow-lg">
+            <div className="w-full inline-block py-8">
                 <div className="md:float-left block">
                     <Link to={`/`}>
                         <span className="cursor-pointer font-bold text-4xl px-8 text-grey font-serif">
