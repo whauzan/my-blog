@@ -4,11 +4,15 @@ import './index.css';
 import '../src/Styles/global.scss'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import client from './Apollo/client'
+import { ApolloProvider } from '@apollo/client'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <ApolloProvider client={client}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </ApolloProvider>,
   document.getElementById('root')
 );
 
