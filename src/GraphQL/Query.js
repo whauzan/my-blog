@@ -12,7 +12,7 @@ export const LOAD_POST = gql`
             slug
             title
             author_info {
-            name
+                name
             }
             created_at
             category_posts {
@@ -52,6 +52,45 @@ export const LOAD_CATEGORIES = gql`
         category {
             name
             slug
+        }
+    }
+`
+
+export const LOAD_POST_DETAIL = gql`
+    query getPostDetail($slug: String!) {
+        post(where: {slug: {_eq: $slug}}) {
+            content
+            created_at
+            excerpt
+            featured_image
+            slug
+            title
+            category_posts {
+                category {
+                    name
+                    slug
+                }
+            }
+            author_info {
+                name
+                id
+            }
+        }
+    }
+`
+
+export const LOAD_POST_CATEGORY = gql`
+    query MyQuery4($slug: String!) {
+        post(where: {category_posts: {category: {slug: {_eq: $slug}}}}) {
+            created_at
+            content
+            excerpt
+            featured_image
+            slug
+            title
+            author_info {
+                name
+            }
         }
     }
 `

@@ -6,7 +6,7 @@ export default function useGetSimilarPost(categories, slug) {
         error: errorGetSimilarPost,
         loading: loadingGetSimilarPost,
         data: dataGetSimilarPost
-    } = useQuery(LOAD_SIMILAR_POST, {variables: { categories: categories, slug: slug }});
+    } = useQuery(LOAD_SIMILAR_POST, {variables: { slug: slug, categories: categories }});
 
     return { errorGetSimilarPost, loadingGetSimilarPost, dataGetSimilarPost }
 }
