@@ -1,6 +1,7 @@
 import Today from '@mui/icons-material/Today'
 import moment from 'moment'
 import React from 'react'
+import renderHTML from 'react-render-html'
 
 function PostDetail({ post }) {
     // console.log(post);
@@ -20,7 +21,7 @@ function PostDetail({ post }) {
                     </div>
                 </div>
                 <h1 className="mb-8 text-3xl font-semibold text-grey">{post.title}</h1>
-                <p className="text-grey-dark">{post.content}</p>
+                <p className="text-grey-dark">{renderHTML(post.content)}</p>
             </div>
         </div>
     )
