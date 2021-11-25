@@ -75,6 +75,12 @@ export const LOAD_POST_DETAIL = gql`
                 name
                 id
             }
+            comments_post {
+                comment
+                email
+                name
+                created_at
+            }
         }
     }
 `
