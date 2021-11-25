@@ -14,7 +14,7 @@ const Categories = () => {
     }, [dataGetCategories])
 
     return (
-        <div className="bg-blue-light shadow-2xl rounded-lg p-8 mt-8">
+        <div className="bg-blue-light shadow-2xl rounded-lg p-8">
             <h3 className="text-xl font-semibold text-grey mb-8 border-b pb-4">Categories</h3>
             {categories.map((category, index) => (
                 <Link key={index} to={`/category/${category.slug}`}>
