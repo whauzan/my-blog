@@ -21,7 +21,7 @@ function PostDetail({ post }) {
                     </div>
                 </div>
                 <h1 className="mb-8 text-3xl font-semibold text-grey">{post.title}</h1>
-                <p className="text-grey-dark">{renderHTML(post.content)}</p>
+                {post.content ? <p className="text-grey-dark">{renderHTML(post.content)}</p> : null}
             </div>
         </div>
     )
