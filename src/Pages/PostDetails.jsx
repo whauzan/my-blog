@@ -32,7 +32,7 @@ function PostDetails() {
                 <div className="col-span-1 lg:col-span-8">
                     <PostDetail post={dataPostDetail}/>
                     <CommentForm slug={dataPostDetail.slug}/>
-                    <Comment slug={dataPostDetail.slug}/>
+                    <Comment post={dataPostDetail.comments_post}/>
                 </div>
                 <div className="col-span-1 lg:col-span-4">
                     <div className="relative lg:sticky top-32">
