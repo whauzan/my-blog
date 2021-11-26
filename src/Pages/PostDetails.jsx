@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react'
 import { useParams } from 'react-router'
 import { Categories, Header, PostWidget, PostDetail, CommentForm, Comment } from '../Components'
 import useGetPostDetail from '../Hooks/useGetPostDetail'
+import AdjacentPosts from '../Section/AdjacentPosts';
 
 function PostDetails() {
     let { slug } = useParams();
@@ -31,6 +32,7 @@ function PostDetails() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 <div className="col-span-1 lg:col-span-8">
                     <PostDetail post={dataPostDetail}/>
+                    <AdjacentPosts created_at={dataPostDetail.created_at} />
                     <CommentForm slug={dataPostDetail.slug}/>
                     <Comment post={dataPostDetail.comments_post}/>
                 </div>
