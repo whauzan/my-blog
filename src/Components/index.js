@@ -5,7 +5,7 @@ export { default as Header } from './Header';
 export { default as PostDetail } from './PostDetail';
 export { default as CommentForm } from './CommentForm';
 export { default as Comment } from './Comment';
-export { default as AdjacentPostCards } from './AdjacentPostCards';
+export { default as AdjacentPostCard } from './AdjacentPostCard';
 export { default as FeaturedPostCard } from './FeaturedPostCard';
 export { default as NewPostCard } from './Dashboard/NewPostCard';
 export { default as CategoriesDashboard } from './Dashboard/Categories';
