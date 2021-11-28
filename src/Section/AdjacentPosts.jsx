@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { AdjacentPostCard } from '../Components';
-import useGetNextPost from '../Hooks/useGetNextPost';
-import useGetPreviousPost from '../Hooks/useGetPreviousPost'
+import { useGetNextPost, useGetPreviousPost } from '../Hooks';
 
 function AdjacentPosts( created_at ) {
     const { errorGetPreviousPost, loadingGetPreviousPost, dataGetPreviousPost } = useGetPreviousPost(created_at);
@@ -17,8 +16,8 @@ function AdjacentPosts( created_at ) {
         }
     }, [dataGetPreviousPost, dataGetNextPost])
 
-    console.log("ini prev", previousPost);
-    console.log("ini next", nextPost);
+    // console.log("ini prev", previousPost);
+    // console.log("ini next", nextPost);
     return (
         <div className="grid grid-cols-1 lg:grid-cols-8 gap-12 mb-8">
             {previousPost? 
