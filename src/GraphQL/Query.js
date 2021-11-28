@@ -50,6 +50,7 @@ export const LOAD_SIMILAR_POST = gql`
 export const LOAD_CATEGORIES = gql`
     query getCategories {
         category {
+            id
             name
             slug
         }
@@ -86,7 +87,7 @@ export const LOAD_POST_DETAIL = gql`
 `
 
 export const LOAD_POST_CATEGORY = gql`
-    query MyQuery4($slug: String!) {
+    query getPostCategory($slug: String!) {
         post(where: {category_posts: {category: {slug: {_eq: $slug}}}}) {
             created_at
             content
@@ -97,6 +98,50 @@ export const LOAD_POST_CATEGORY = gql`
             author_info {
                 name
             }
+        }
+    }
+`
+
+export const LOAD_FEATURED_POST = gql`
+    query getFeaturedPost {
+        post(where: {featured_post: {_eq: true}}) {
+            author_info {
+                name
+            }
+            title
+            slug
+            created_at
+            featured_image
+        }
+    }
+`
+
+export const LOAD_PREVIOUS_POST = gql`
+    query getPreviousPost($created_at: timestamptz!) {
+        post(where: {created_at: {_lt: $created_at}}, limit: 1, order_by: {created_at: desc}) {
+            featured_image
+            slug
+            title
+            created_at
+        }
+    }
+`
+
+export const LOAD_NEXT_POST = gql`
+    query getNextPost($created_at: timestamptz!) {
+        post(where: {created_at: {_gt: $created_at}}, limit: 1) {
+            featured_image
+            slug
+            title
+            created_at
+        }
+    }
+`
+
+export const LOAD_LATEST_POST_ID = gql`
+    query getLastPostID {
+        post(limit: 1, order_by: {id: desc}) {
+            id
         }
     }
 `
