@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import useInsertComment from '../Hooks/useInsertComment';
+import { useInsertComment } from '../Hooks';
 
 function CommentForm({ slug }) {
     const initialError = {
@@ -95,14 +95,11 @@ function CommentForm({ slug }) {
         if (storeData) {
             localStorage.setItem('nama', data.nama);
             localStorage.setItem('email', data.email);
+            // setData(localData);
+        } else {
+            setData(initialData);
         }
-        console.log("sebelum", data);
-        setData(initialData);
-        console.log(data);
     }
-    // console.log(data);
-    // console.log(error);
-
 
     return (
         <div className="bg-blue-light shadow-2xl rounded-lg p-8 pb-12 mb-8">
@@ -113,6 +110,7 @@ function CommentForm({ slug }) {
                     className="p-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-green bg-blue-white placeholder-black placeholder-opacity-50"
                     placeholder="Comment"
                     name="comment"
+                    value={data?.comment}
                 />
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
