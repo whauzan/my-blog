@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment';
-import useGetRecentPost from '../Hooks/useGetRecentPost';
-import useGetSimilarPost from '../Hooks/useGetSimilarPost';
+import { useGetRecentPost, useGetSimilarPost } from '../Hooks';
 
 function PostWidget({ categories, slug }) {
     const [relatedPost, setRelatedPost] = useState([]);

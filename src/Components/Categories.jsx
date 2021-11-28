@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import useGetCategories from '../Hooks/useGetCategories';
+import { useGetCategories } from '../Hooks';
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);

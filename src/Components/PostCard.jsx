@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Today from '@mui/icons-material/Today';
 import moment from 'moment';
+import renderHTML from 'react-render-html'
 
 const PostCard = ({ post }) => {
     return (
@@ -24,7 +25,7 @@ const PostCard = ({ post }) => {
                 </div>
             </div>
             <p className="text-center text-lg text-grey-dark font-normal px-4 lg:px-20 mb-8">
-                {post.excerpt}
+                {renderHTML(post.excerpt)}
             </p>
             <div className="text-center">
                 <Link to={`/post/${post.slug}`}>
