@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import { Header, PostCard, Categories } from '../Components'
-import useGetPostCategory from '../Hooks/useGetPostCategory';
+import { useGetPostCategory } from '../Hooks';
 
 function Category() {
     let { slug } = useParams();

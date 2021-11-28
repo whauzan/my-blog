@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { PostCard, Categories, PostWidget, Header } from '../Components';
-import useGetPost from '../Hooks/useGetPost';
+import { useGetPost } from '../Hooks';
 import FeaturedPosts from '../Section/FeaturedPosts';
 
 function Home() {
