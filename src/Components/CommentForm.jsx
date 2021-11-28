@@ -96,9 +96,13 @@ function CommentForm({ slug }) {
             localStorage.setItem('nama', data.nama);
             localStorage.setItem('email', data.email);
         }
+        console.log("sebelum", data);
+        setData(initialData);
+        console.log(data);
     }
-    console.log(data);
-    console.log(error);
+    // console.log(data);
+    // console.log(error);
+
 
     return (
         <div className="bg-blue-light shadow-2xl rounded-lg p-8 pb-12 mb-8">
