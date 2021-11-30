@@ -64,10 +64,12 @@ export const LOAD_POST_DETAIL = gql`
             created_at
             excerpt
             featured_image
+            featured_post
             slug
             title
             category_posts {
                 category {
+                    id
                     name
                     slug
                 }
@@ -142,6 +144,41 @@ export const LOAD_LATEST_POST_ID = gql`
     query getLastPostID {
         post(limit: 1, order_by: {id: desc}) {
             id
+        }
+    }
+`
+
+export const LOAD_POST_TABLE = gql`
+    query getPostTable {
+        post(order_by: {created_at: desc}) {
+            content
+            created_at
+            excerpt
+            featured_image
+            featured_post
+            id
+            id_author
+            slug
+            title
+            category_posts {
+                category {
+                    name
+                    slug
+                    id
+                }
+            }
+            comments_post {
+                comment
+            }
+        }
+    }
+`
+
+export const LOAD_AUTHOR_INFO = gql`
+    query getAuthorInfo {
+        author {
+            name
+            password
         }
     }
 `

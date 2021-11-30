@@ -31,3 +31,11 @@ export const INSERT_POST_CATEGORY = gql`
         }
     }
 `
+
+export const DELETE_POST = gql`
+    mutation deletePost($id: Int!) {
+        delete_post(where: {id: {_eq: $id}}) {
+            affected_rows
+        }
+    }
+`
