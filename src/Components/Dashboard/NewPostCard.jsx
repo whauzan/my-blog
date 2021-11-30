@@ -2,7 +2,7 @@ import React from 'react'
 import ReactQuill from 'react-quill';
 import "react-quill/dist/quill.snow.css";
 
-function NewPostCard({newPost, handleInput, handleInputExcerpt, handleInputContent, handleFile, handleFeatured, handleInsertPostCategory}) {
+function NewPostCard({newPost, handleInput, handleInputExcerpt, handleInputContent, handleFile, handleFeatured, handleInsertPost}) {
     return (
         <div className="bg-blue-light shadow-2xl rounded-lg p-8 pb-12 mb-8">
             <h3 className="text-xl font-semibold pb-4 text-grey">Title</h3>
@@ -47,7 +47,7 @@ function NewPostCard({newPost, handleInput, handleInputExcerpt, handleInputConte
             <div className="mt-8">
                 <button
                     type="button"
-                    onClick={handleInsertPostCategory}
+                    onClick={handleInsertPost}
                     className="inline-flex px-7 py-2 border border-transparent rounded-xl shadow-sm text-sm font-medium font-serif border-green text-green bg-blue hover:bg-blue-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                     Add Post

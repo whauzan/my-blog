@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { app } from "../Firebase/firebase-config";
 import { CategoriesDashboard, Navbar, NewPostCard } from '../Components';
 import { useGetCategories, useGetLastPostID, useInsertCategory, useInsertPost, useInsertPostCategory } from '../Hooks';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 
 function NewPost() {
@@ -146,7 +145,8 @@ function NewPost() {
 
     const handlePostCategories = (id) => {
         setPostCategories((postCategories) => postCategories.map((item) => item.id === id ? { ...item, checked: !item.checked } : item));
-        console.log(postCategories);
+        // console.log(postCategories);
+        // console.log(lastPostID.id);
     }
 
     const handleInsertPost = () => {
@@ -155,9 +155,9 @@ function NewPost() {
     }
 
     const handleInsertPostCategory = () => {
-        handleInsertPost();
+        // handleInsertPost();
         postCategories.map(item => (
-            item.checked ? tambahPostCategory(item.id, lastPostID.id+1) : null
+            item.checked ? tambahPostCategory(item.id, lastPostID.id) : null
         ))
     }
 
@@ -171,10 +171,10 @@ function NewPost() {
                     <h1 className="text-grey text-2xl font-semibold mb-8">Add New Post</h1>
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                         <div className="lg:col-span-8 col-span-1">
-                            <NewPostCard newPost={newPost} handleInput={handleInput} handleInputExcerpt={handleInputExcerpt} handleInputContent={handleInputContent} handleFile={handleFile} handleFeatured={handleFeatured} handleInsertPostCategory={handleInsertPostCategory} />
+                            <NewPostCard newPost={newPost} handleInput={handleInput} handleInputExcerpt={handleInputExcerpt} handleInputContent={handleInputContent} handleFile={handleFile} handleFeatured={handleFeatured} handleInsertPost={handleInsertPost} />
                         </div>
                         <div className="lg:col-span-4 col-span-1">
-                            <CategoriesDashboard categories={categories} handlePostCategories={handlePostCategories} handleChangeCategory={handleChangeCategory} inputCategory={inputCategory} handleInsertCategory={handleInsertCategory} />
+                            <CategoriesDashboard categories={categories} handlePostCategories={handlePostCategories} handleChangeCategory={handleChangeCategory} inputCategory={inputCategory} handleInsertCategory={handleInsertCategory} handleInsertPostCategory={handleInsertPostCategory} />
                         </div>
                     </div>
                 </div>
