@@ -11,3 +11,6 @@ export { default as NewPostCard } from './Dashboard/NewPostCard';
 export { default as CategoriesDashboard } from './Dashboard/Categories';
 export { default as Navbar } from './Dashboard/Navbar';
 export { default as LoginCard } from './LoginCard';
+export { default as PostListTable } from './Dashboard/PostListTable';
+export { default as EditPostCard } from './Dashboard/EditPostCard';
+export { default as EditCategories } from './Dashboard/EditCategories';
