@@ -14,3 +14,4 @@ export { default as LoginCard } from './LoginCard';
 export { default as PostListTable } from './Dashboard/PostListTable';
 export { default as EditPostCard } from './Dashboard/EditPostCard';
 export { default as EditCategories } from './Dashboard/EditCategories';
+export { default as CommentList } from './Dashboard/CommentList';
