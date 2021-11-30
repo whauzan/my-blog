@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import LockIcon from '@mui/icons-material/Lock';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router'
 import { useGetAuthorInfo } from '../Hooks';
 
@@ -31,7 +30,7 @@ function LoginCard() {
         console.log(inputData);
     }
     // console.log(authorData);
-
+    // console.log("udah masuk");
     const handleSignIn = (e) => {
         if (authorData.name === inputData.name && authorData.password === inputData.password) {
             localStorage.setItem('name', authorData.name);
