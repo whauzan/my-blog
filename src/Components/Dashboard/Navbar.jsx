@@ -3,6 +3,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import imgAcc from '../../img/Me.jpg'
 
 function classNames(...classes) {
@@ -10,11 +11,18 @@ function classNames(...classes) {
 }
 
 export default function Navbar({ curSlug }) {
+    const navigate = useNavigate();
     const navigation = [
         { name: 'Dashboard', slug: 'dashboard', current: curSlug ===  'dashboard' ? true : false},
         { name: 'Posts', slug: 'posts', current: curSlug ===  'posts' ? true : false },
         { name: 'Add New Post', slug: 'add-post', current: curSlug ===  'add-post' ? true : false },
     ]
+
+    const handleSignOut = () => {
+        localStorage.removeItem("name")
+        localStorage.removeItem("password")
+        navigate("/admin")
+    }
 
     return (
         <Disclosure as="nav" className="bg-blue-light mb-8 shadow-lg">
@@ -43,10 +51,10 @@ export default function Navbar({ curSlug }) {
                             </div>
                             <div className="hidden sm:block sm:ml-6">
                                 <div className="flex space-x-4">
-                                    {navigation.map((item) => (
+                                    {navigation.map((item, index) => (
                                         <Link to={`/admin/${item.slug}`}>
                                             <a
-                                                key={item.name}
+                                                key={index}
                                                 className={classNames(
                                                 item.current ? 'bg-gray-900 text-white' : 'text-grey hover:bg-gray-700 hover:text-white',
                                                 'px-3 py-2 rounded-md text-sm font-medium'
@@ -86,13 +94,12 @@ export default function Navbar({ curSlug }) {
                                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                                         <Menu.Item>
                                             {({ active }) => (
-                                                <Link to={`/admin`}>
-                                                    <a
-                                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                    >
-                                                        Sign out
-                                                    </a>
-                                                </Link>
+                                                <a
+                                                    onClick={handleSignOut}
+                                                    className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                >
+                                                    Sign out
+                                                </a>
                                             )}
                                         </Menu.Item>
                                     </Menu.Items>

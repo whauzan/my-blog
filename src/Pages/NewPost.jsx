@@ -2,9 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { app } from "../Firebase/firebase-config";
 import { CategoriesDashboard, Navbar, NewPostCard } from '../Components';
 import { useGetCategories, useGetLastPostID, useInsertCategory, useInsertPost, useInsertPostCategory } from '../Hooks';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 function NewPost() {
     let curSlug = 'add-post';
+
+    const navigate = useNavigate();
+
+    const authorData = {
+        name: localStorage.getItem("name"),
+        password: localStorage.getItem("password"),
+    }
 
     const initialData = {
         title: "",
@@ -20,7 +29,7 @@ function NewPost() {
     const [categories, setCategories] = useState([]);
     const [postCategories, setPostCategories] = useState([]);
     const [inputCategory, setInputCategory] = useState([]);
-    const [featuredPost, setFeaturedPost] = useState(true);
+    const [featuredPost, setFeaturedPost] = useState(false);
     const [lastPostID, setLastPostID] = useState();
 
     const { errorGetCategories, loadingGetCategories, dataGetCategories } = useGetCategories();
@@ -131,7 +140,7 @@ function NewPost() {
         setFeaturedPost(!featuredPost);
         setNewPost({
             ...newPost,
-            featured_post: featuredPost
+            featured_post: !featuredPost
         })
     }
 
@@ -146,27 +155,31 @@ function NewPost() {
     }
 
     const handleInsertPostCategory = () => {
-        handleInsertPost()
+        handleInsertPost();
         postCategories.map(item => (
-            item.checked ? tambahPostCategory(item.id, lastPostID.id) : null
+            item.checked ? tambahPostCategory(item.id, lastPostID.id+1) : null
         ))
     }
 
     return (
         <>
-            <Navbar curSlug={curSlug} />
-            <div className="container mx-auto px-10">
-                <h3 className="text-grey-dark text-lg">Blog Posts</h3>
-                <h1 className="text-grey text-2xl font-semibold mb-8">Add New Post</h1>
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                    <div className="lg:col-span-8 col-span-1">
-                        <NewPostCard newPost={newPost} handleInput={handleInput} handleInputExcerpt={handleInputExcerpt} handleInputContent={handleInputContent} handleFile={handleFile} handleFeatured={handleFeatured} handleInsertPostCategory={handleInsertPostCategory} />
-                    </div>
-                    <div className="lg:col-span-4 col-span-1">
-                        <CategoriesDashboard categories={categories} handlePostCategories={handlePostCategories} handleChangeCategory={handleChangeCategory} inputCategory={inputCategory} handleInsertCategory={handleInsertCategory} />
+            {authorData.name && authorData.password ? 
+                <>
+                <Navbar curSlug={curSlug} />
+                <div className="container mx-auto px-10">
+                    <h3 className="text-grey-dark text-lg">Blog Posts</h3>
+                    <h1 className="text-grey text-2xl font-semibold mb-8">Add New Post</h1>
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                        <div className="lg:col-span-8 col-span-1">
+                            <NewPostCard newPost={newPost} handleInput={handleInput} handleInputExcerpt={handleInputExcerpt} handleInputContent={handleInputContent} handleFile={handleFile} handleFeatured={handleFeatured} handleInsertPostCategory={handleInsertPostCategory} />
+                        </div>
+                        <div className="lg:col-span-4 col-span-1">
+                            <CategoriesDashboard categories={categories} handlePostCategories={handlePostCategories} handleChangeCategory={handleChangeCategory} inputCategory={inputCategory} handleInsertCategory={handleInsertCategory} />
+                        </div>
                     </div>
                 </div>
-            </div>
+                </>
+            : navigate("/admin")}
         </>
     )
 }
