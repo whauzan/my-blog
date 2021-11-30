@@ -25,7 +25,7 @@ export default function Navbar({ curSlug }) {
     }
 
     return (
-        <Disclosure as="nav" className="bg-blue-light mb-8 shadow-lg">
+        <Disclosure as="nav" className="bg-blue-light mb-8 shadow-lg sticky top-0">
             {({ open }) => (
             <>
                 <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
