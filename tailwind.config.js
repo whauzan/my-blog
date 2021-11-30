@@ -18,7 +18,8 @@ module.exports = {
         },
         green: {
           DEFAULT: '#64FFDA',
-          light: '#92FFE5'
+          light: '#92FFE5',
+          dark: '#07dba9'
         }
       }
     },
