@@ -3,9 +3,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function AdjacentPostCard({ post, position }) {
-    console.log(post);
     return (
-        <>
+    <>
         <div className="absolute rounded-lg bg-center bg-no-repeat bg-cover shadow-md inline-block w-full h-72" style={{ backgroundImage: `url('${post.featured_image}')` }} />
         <div className="absolute rounded-lg bg-center bg-gradient-to-b opacity-50 from-gray-400 via-gray-700 to-black w-full h-72" />
         <div className="flex flex-col rounded-lg p-4 items-center justify-center absolute w-full h-full">
@@ -27,7 +26,7 @@ function AdjacentPostCard({ post, position }) {
             </svg>
         </div>
         )}
-  </>
+    </>
     )
 }
 
