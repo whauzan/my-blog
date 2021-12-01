@@ -2,7 +2,7 @@ import React from 'react'
 
 function Categories({ categories, handlePostCategories, handleChangeCategory, inputCategory, handleInsertCategory, handleInsertPostCategory }) {
     return (
-        <div className="lg:sticky relative top-32">
+        <div className="lg:sticky top-32">
             <div className="bg-blue-light shadow-2xl rounded-lg p-8 mb-8">
                 <h3 className="text-xl mb-8 font-semibold border-b pb-4 text-grey">Categories</h3>
                 {categories?.map((item, index) => (
