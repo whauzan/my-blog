@@ -17,7 +17,7 @@ const PostCard = ({ post }) => {
             </h1>
             <div className="block lg:flex text-center items-center justify-center mb-8 w-full">
                 <div className="flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8">
-                    <p className="inline align-middle text-grey ml-2 text-lg">{post.author_info.name}</p>
+                    <p className="inline align-middle text-grey text-lg">{post.author_info.name}</p>
                 </div>
                 <div className="font-medium text-grey">
                     <Today className="h-6 w-6 inline mr-2 text-grey" fill="none" viewBox="0 0 24 24"></Today>
