@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { EditCategories, EditPostCard, Navbar } from '../Components';
 import { useGetCategories, useGetPostDetail } from '../Hooks';
 import { app } from "../Firebase/firebase-config";
+import { useSelector } from 'react-redux';
 
 function EditPost() {
     let { slug } = useParams();
+    const navigate = useNavigate();
+    const authorData = useSelector((state) => state.admin.admins);
 
     const { errorGetPostDetail, loadingGetPostDetail, dataGetPostDetail } = useGetPostDetail(slug);
     const { errorGetCategories, loadingGetCategories, dataGetCategories } = useGetCategories();
@@ -69,19 +72,23 @@ function EditPost() {
 
     return (
         <>
-        <Navbar />
-        <div className="container mx-auto px-10">
-            <h3 className="text-grey-dark text-lg">Blog Posts</h3>
-            <h1 className="text-grey text-2xl font-semibold mb-8">Edit </h1>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                <div className="lg:col-span-8 col-span-1">
-                    <EditPostCard editPost={editPost} handleChange={handleChange} handleInputContent={handleInputContent} handleInputExcerpt={handleInputExcerpt} handleFile={handleFile} />
+        {authorData.name && authorData.password ? 
+            <>
+                <Navbar />
+                <div className="container mx-auto px-10">
+                    <h3 className="text-grey-dark text-lg">Blog Posts</h3>
+                    <h1 className="text-grey text-2xl font-semibold mb-8">Edit </h1>
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                        <div className="lg:col-span-8 col-span-1">
+                            <EditPostCard editPost={editPost} handleChange={handleChange} handleInputContent={handleInputContent} handleInputExcerpt={handleInputExcerpt} handleFile={handleFile} />
+                        </div>
+                        {/* <div className="lg:col-span-4 col-span-1">
+                            <EditCategories categories={categories} handlePostCategories={handlePostCategories} handleChangeCategory={handleChangeCategory} inputCategory={inputCategory} handleInsertCategory={handleInsertCategory} />
+                        </div> */}
+                    </div>
                 </div>
-                {/* <div className="lg:col-span-4 col-span-1">
-                    <EditCategories categories={categories} handlePostCategories={handlePostCategories} handleChangeCategory={handleChangeCategory} inputCategory={inputCategory} handleInsertCategory={handleInsertCategory} />
-                </div> */}
-            </div>
-        </div>
+            </>
+        : navigate("/admin")}
         </>
     )
 }
