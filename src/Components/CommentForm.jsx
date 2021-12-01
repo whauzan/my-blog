@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { useInsertComment } from '../Hooks';
+import { saveInfo } from '../Redux/sliceComment';
 
 function CommentForm({ slug }) {
     const initialError = {
@@ -8,11 +10,8 @@ function CommentForm({ slug }) {
         commentError : "",
     }
 
-    const localData = {
-        nama: localStorage.getItem("nama"),
-        email: localStorage.getItem("email"),
-        comment: "",
-    }
+    const localData = useSelector((state) => state.comment.comments);
+    const dispatch = useDispatch();
 
     const initialData = {
         nama: "",
@@ -93,8 +92,13 @@ function CommentForm({ slug }) {
         }
 
         if (storeData) {
-            localStorage.setItem('nama', data.nama);
-            localStorage.setItem('email', data.email);
+            // localStorage.setItem('nama', data.nama);
+            // localStorage.setItem('email', data.email);
+            const newData = {
+                nama: data.nama,
+                email: data.email,
+            }
+            dispatch(saveInfo(newData));
             // setData(localData);
         } else {
             setData(initialData);
