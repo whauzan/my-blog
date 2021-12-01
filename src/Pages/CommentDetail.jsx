@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { CommentList, Navbar } from '../Components';
 import { useSubsComment } from '../Hooks';
@@ -6,10 +7,7 @@ import { useSubsComment } from '../Hooks';
 function CommentDetail() {
     const navigate = useNavigate();
 
-    const authorData = {
-        name: localStorage.getItem("name"),
-        password: localStorage.getItem("password"),
-    }
+    const authorData = useSelector((state) => state.admin.admins);
 
     const { errorSubsComment, loadingSubsComment, dataSubsComment } = useSubsComment();
     const [comment, setComment] = useState();

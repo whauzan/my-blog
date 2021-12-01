@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Navbar, PostListTable } from '../Components';
 import { useDeletePost, useGetPostTable } from '../Hooks';
@@ -7,10 +8,7 @@ function Posts() {
     let curSlug = 'posts';
     const navigate = useNavigate();
 
-    const authorData = {
-        name: localStorage.getItem("name"),
-        password: localStorage.getItem("password"),
-    }
+    const authorData = useSelector((state) => state.admin.admins);
 
     const [postTable, setPostTable] = useState([]);
     const { errorGetPostTable, loadingGetPostTable, dataGetPostTable } = useGetPostTable();

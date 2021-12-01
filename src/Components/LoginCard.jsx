@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import LockIcon from '@mui/icons-material/Lock';
 import { useNavigate } from 'react-router'
 import { useGetAuthorInfo } from '../Hooks';
+import { useDispatch } from 'react-redux';
+import { saveAdmin } from '../Redux/sliceAdmin';
 
 function LoginCard() {
     const initialData = {
@@ -9,6 +11,7 @@ function LoginCard() {
         password: "",
     }
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const { errorGetAuthorInfo, loadingGetAuthorInfo, dataGetAuthorInfo } = useGetAuthorInfo();
     const [authorData, setAuthorData] = useState([]);
@@ -29,12 +32,10 @@ function LoginCard() {
         })
         console.log(inputData);
     }
-    // console.log(authorData);
-    // console.log("udah masuk");
+    
     const handleSignIn = (e) => {
         if (authorData.name === inputData.name && authorData.password === inputData.password) {
-            localStorage.setItem('name', authorData.name);
-            localStorage.setItem('password', authorData.password);
+            dispatch(saveAdmin(authorData));
             navigate("/admin/dashboard")
         } else {
             e.preventDefault();

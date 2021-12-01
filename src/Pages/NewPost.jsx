@@ -3,16 +3,14 @@ import { app } from "../Firebase/firebase-config";
 import { CategoriesDashboard, Navbar, NewPostCard } from '../Components';
 import { useGetCategories, useGetLastPostID, useInsertCategory, useInsertPost, useInsertPostCategory } from '../Hooks';
 import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
 
 function NewPost() {
     let curSlug = 'add-post';
 
     const navigate = useNavigate();
 
-    const authorData = {
-        name: localStorage.getItem("name"),
-        password: localStorage.getItem("password"),
-    }
+    const authorData = useSelector((state) => state.admin.admins);
 
     const initialData = {
         title: "",

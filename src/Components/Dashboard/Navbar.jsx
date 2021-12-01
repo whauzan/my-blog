@@ -5,6 +5,8 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router'
 import imgAcc from '../../img/Me.jpg'
+import { useDispatch } from 'react-redux'
+import { deleteAdmin } from '../../Redux/sliceAdmin'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -12,6 +14,7 @@ function classNames(...classes) {
 
 export default function Navbar({ curSlug }) {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const navigation = [
         { name: 'Dashboard', slug: 'dashboard', current: curSlug ===  'dashboard' ? true : false},
         { name: 'Posts', slug: 'posts', current: curSlug ===  'posts' ? true : false },
@@ -19,8 +22,7 @@ export default function Navbar({ curSlug }) {
     ]
 
     const handleSignOut = () => {
-        localStorage.removeItem("name")
-        localStorage.removeItem("password")
+        dispatch(deleteAdmin())
         navigate("/admin")
     }
 

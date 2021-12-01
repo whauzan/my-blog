@@ -3,15 +3,13 @@ import { CommentList, Navbar } from '../Components';
 import { useNavigate } from 'react-router';
 import { useSubsComment, useSubsCommentEmail } from '../Hooks';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Dashboard() {
     let curSlug = 'dashboard';
     const navigate = useNavigate();
 
-    const authorData = {
-        name: localStorage.getItem("name"),
-        password: localStorage.getItem("password"),
-    }
+    const authorData = useSelector((state) => state.admin.admins);
 
     const { errorSubsComment, loadingSubsComment, dataSubsComment } = useSubsComment();
     const [comment, setComment] = useState();
