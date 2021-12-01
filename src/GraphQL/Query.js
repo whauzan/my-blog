@@ -78,7 +78,7 @@ export const LOAD_POST_DETAIL = gql`
                 name
                 id
             }
-            comments_post {
+            comments_post(order_by: {created_at: desc}) {
                 comment
                 email
                 name
