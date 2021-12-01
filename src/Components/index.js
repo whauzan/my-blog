@@ -15,3 +15,8 @@ export { default as PostListTable } from './Dashboard/PostListTable';
 export { default as EditPostCard } from './Dashboard/EditPostCard';
 export { default as EditCategories } from './Dashboard/EditCategories';
 export { default as CommentList } from './Dashboard/CommentList';
+export { default as PostCardSkeleton } from './LoadingSkeleton/PostCardSkeleton';
+export { default as PostWidgetSkeleton } from './LoadingSkeleton/PostWidgetSkeleton';
+export { default as CategoriesSkeleton } from './LoadingSkeleton/CategoriesSkeleton';
+export { default as PostDetailCardSkeleton } from './LoadingSkeleton/PostDetailCardSkeleton';
+export { default as AdjacentPostSkeleton } from './LoadingSkeleton/AdjacentPostSkeleton';
