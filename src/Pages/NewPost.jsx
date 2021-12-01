@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { app } from "../Firebase/firebase-config";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { CategoriesDashboard, Navbar, NewPostCard } from '../Components';
 import { useGetCategories, useGetLastPostID, useInsertCategory, useInsertPost, useInsertPostCategory } from '../Hooks';
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
+import imageCompression from 'browser-image-compression';
 
 function NewPost() {
     let curSlug = 'add-post';
@@ -34,6 +36,11 @@ function NewPost() {
     const { insertPost, loadingInsertPost } = useInsertPost();
     const { dataLastPostID } = useGetLastPostID();
     const { insertPostCategory, loadingInsertPostCategory } = useInsertPostCategory();
+
+    const compressionOption = {
+		maxWidthOrHeight: 1080,
+		useWebWorker: true,
+	};
 
     const tambahCategory = (newCategory) => {
         insertCategory({variables: {
@@ -99,18 +106,24 @@ function NewPost() {
     }
 
     const handleFile = (e) => {
-        const file = e.target.files[0];
-        const storageRef = app.storage().ref();
-        const fileRef = storageRef.child(file.name);
-        fileRef.put(file).then((e) => {
-            e.ref.getDownloadURL().then(function (downloadURL) {
-                console.log("File available at", downloadURL);
-                setNewPost({
-                    ...newPost,
-                    featured_image : downloadURL
-                })
+        if (app) {
+            const file = e.target.files[0];
+            const storageRef = getStorage();
+            const fileRef = ref(storageRef, file.name);
+            imageCompression(file, compressionOption).then((compressedFile) => {
+				uploadBytes(fileRef, compressedFile).then(() => {
+					getDownloadURL(fileRef)
+						.then((url) => {
+                            console.log("ini link", url);
+							setNewPost({
+                                ...newPost,
+                                featured_image : url
+                            });
+						}
+                    )
+                });
             });
-        });
+        }
     }
 
     const handleChangeCategory = (e) => {
