@@ -24,7 +24,7 @@ function NewPostCard({newPost, handleInput, handleInputExcerpt, handleInputConte
             />
             <h3 className="text-xl font-semibold pb-4 text-grey">Content</h3>
             <ReactQuill
-                // theme="snow"
+                theme="snow"
                 className="rounded-lg text-grey"
                 name="content"
                 value={newPost.content}

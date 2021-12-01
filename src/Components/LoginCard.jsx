@@ -30,7 +30,6 @@ function LoginCard() {
             ...inputData,
             [nameTarget]: value
         })
-        console.log(inputData);
     }
     
     const handleSignIn = (e) => {

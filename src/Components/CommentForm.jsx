@@ -23,21 +23,8 @@ function CommentForm({ slug }) {
     const [storeData, setStoreData] = useState(false);
     const [data, setData] = useState(localData ? localData : initialData);
     const { insertComment, loadingInsertComment } = useInsertComment();
-    // console.log("cek",storeData);
-    // const [showSuccesMessage, setShowSuccesMessage] = useState(false);
-    
-    // const commentElement = useRef();
-    // const nameElement = useRef();
-    // const emailElement = useRef();
-    // const storeDataElement = useRef();
-
-    // const comment = commentElement.current?.value;
-    // const name = nameElement.current?.value;
-    // const email = emailElement.current?.value;
-    // const storeData = storeDataElement.current?.checked;
 
     const emailRegex = /\S+@\S+\.\S+/;
-    // console.log(commentElement.current?.name);
 
     const tambahComment = (newComment) => {
         insertComment({variables: {
@@ -92,14 +79,11 @@ function CommentForm({ slug }) {
         }
 
         if (storeData) {
-            // localStorage.setItem('nama', data.nama);
-            // localStorage.setItem('email', data.email);
             const newData = {
                 nama: data.nama,
                 email: data.email,
             }
             dispatch(saveInfo(newData));
-            // setData(localData);
         } else {
             setData(initialData);
         }
@@ -145,8 +129,6 @@ function CommentForm({ slug }) {
                     </div>
                 </div>
             }
-            
-            {/* {error && <p className="text-xs text-red-500">All fields are required</p>} */}
             <div className="mt-8">
                 <button
                     type="button"
@@ -155,7 +137,6 @@ function CommentForm({ slug }) {
                 >
                     Post Comment
                 </button>
-                {/* {showSuccesMessage && <span className="text-xl float-right font-semiboldmt-3 text-grey">Comment Submitted for review</span>} */}
             </div>
         </div>
     )

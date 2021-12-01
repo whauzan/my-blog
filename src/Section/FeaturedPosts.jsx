@@ -33,7 +33,6 @@ function FeaturedPosts() {
         }
     }, [dataGetFeaturedPost])
 
-    console.log(featuredPost);
 
     const customLeftArrow = (
         <div className="absolute arrow-btn left-0 text-center py-3 cursor-pointer bg-blue-light rounded-full shadow-2xl">

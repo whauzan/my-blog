@@ -3,7 +3,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function FeaturedPostCard({ post }) {
-    console.log(post.created_at);
     return (
         <div className="relative h-72">
             <div className="absolute rounded-lg bg-center bg-no-repeat bg-cover shadow-md inline-block w-full h-72" style={{ backgroundImage: `url('${post.featured_image}')` }} />

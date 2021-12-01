@@ -4,7 +4,6 @@ import React from 'react'
 import renderHTML from 'react-render-html'
 
 function PostDetail({ post }) {
-    // console.log(post);
     return (
         <div className="bg-blue-light shadow-2xl rounded-lg lg:p-8 pb-12 mb-8">
             <div className="relative overflow-hidden shadow-md mb-6">

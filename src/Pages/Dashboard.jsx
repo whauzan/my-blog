@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 function Dashboard() {
     let curSlug = 'dashboard';
     const navigate = useNavigate();
-
     const authorData = useSelector((state) => state.admin.admins);
 
     const { errorSubsComment, loadingSubsComment, dataSubsComment } = useSubsComment();
@@ -24,7 +23,6 @@ function Dashboard() {
             setEmail(dataSubsCommentEmail.comment);
         }
     }, [dataSubsComment, dataSubsCommentEmail])
-    console.log(email);
 
     const deleteDuplicate = (email) => {
         let unique = [];
@@ -35,7 +33,6 @@ function Dashboard() {
         })
         return unique.length;
     }
-    console.log(deleteDuplicate(email));
 
     return (
         <>

@@ -1,20 +1,8 @@
 import React from 'react'
 import ReactQuill from 'react-quill';
 import "react-quill/dist/quill.snow.css";
-import renderHTML from 'react-render-html';
 
 function EditPostCard({editPost, handleChange, handleInputExcerpt, handleInputContent, handleFile}) {
-    // console.log(editPost);
-    let content;
-    let excerpt;
-    if (editPost.content) {
-        content = editPost.content;
-    }
-    if (editPost.excerpt) {
-        excerpt = editPost.excerpt;
-    }
-    
-    // console.log(content);
     const handle = () => {
         console.log(editPost)
     }

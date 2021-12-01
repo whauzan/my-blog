@@ -7,7 +7,6 @@ import { useDeletePost, useGetPostTable } from '../Hooks';
 function Posts() {
     let curSlug = 'posts';
     const navigate = useNavigate();
-
     const authorData = useSelector((state) => state.admin.admins);
 
     const [postTable, setPostTable] = useState([]);

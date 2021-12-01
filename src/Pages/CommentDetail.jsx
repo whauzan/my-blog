@@ -6,9 +6,7 @@ import { useSubsComment } from '../Hooks';
 
 function CommentDetail() {
     const navigate = useNavigate();
-
     const authorData = useSelector((state) => state.admin.admins);
-
     const { errorSubsComment, loadingSubsComment, dataSubsComment } = useSubsComment();
     const [comment, setComment] = useState();
 

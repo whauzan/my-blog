@@ -9,9 +9,7 @@ import imageCompression from 'browser-image-compression';
 
 function NewPost() {
     let curSlug = 'add-post';
-
     const navigate = useNavigate();
-
     const authorData = useSelector((state) => state.admin.admins);
 
     const initialData = {
@@ -156,8 +154,6 @@ function NewPost() {
 
     const handlePostCategories = (id) => {
         setPostCategories((postCategories) => postCategories.map((item) => item.id === id ? { ...item, checked: !item.checked } : item));
-        // console.log(postCategories);
-        // console.log(lastPostID.id);
     }
 
     const handleInsertPost = () => {
