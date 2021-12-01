@@ -1,18 +1,14 @@
 import React, { useEffect,useState } from 'react'
 import { useParams } from 'react-router'
-import { Categories, Header, PostWidget, PostDetail, CommentForm, Comment } from '../Components'
+import { Categories, Header, PostWidget, PostDetail, CommentForm, Comment, PostDetailCardSkeleton, AdjacentPostSkeleton } from '../Components'
 import useGetPostDetail from '../Hooks/useGetPostDetail'
 import AdjacentPosts from '../Section/AdjacentPosts';
 
 function PostDetails() {
     let { slug } = useParams();
-    // console.log(slug);
     const { errorGetPostDetail, loadingGetPostDetail, dataGetPostDetail } = useGetPostDetail(slug);
     const [dataPostDetail, setPostDetail] = useState([]);
     const [dataCategory, setCategory] = useState([]);
-
-    
-    // console.log(dataPostDetail);
     
     useEffect(() => {
         if (dataGetPostDetail) {
@@ -23,18 +19,26 @@ function PostDetails() {
         }
     }, [dataGetPostDetail, dataPostDetail])
 
-    // console.log(dataCategory[0]);
-
     return (
         <>
         <Header />
         <div className="container mx-auto px-10 mb-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 <div className="col-span-1 lg:col-span-8">
-                    <PostDetail post={dataPostDetail}/>
-                    <AdjacentPosts created_at={dataPostDetail.created_at} />
-                    <CommentForm slug={dataPostDetail.slug}/>
-                    <Comment post={dataPostDetail.comments_post}/>
+                    {loadingGetPostDetail ?
+                        <>
+                        <PostDetailCardSkeleton />
+                        <AdjacentPostSkeleton />
+                        <CommentForm />
+                        </>
+                    :
+                        <>
+                        <PostDetail post={dataPostDetail}/>
+                        <AdjacentPosts created_at={dataPostDetail.created_at} />
+                        <CommentForm slug={dataPostDetail.slug}/>
+                        <Comment post={dataPostDetail.comments_post}/>
+                        </>
+                    }
                 </div>
                 <div className="col-span-1 lg:col-span-4">
                     <div className="lg:sticky top-32">

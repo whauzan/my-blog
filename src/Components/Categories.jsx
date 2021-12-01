@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import { CategoriesSkeleton } from '.';
 import { useGetCategories } from '../Hooks';
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);
     const { errorGetCategories, loadingGetCategories, dataGetCategories } = useGetCategories();
 
-    // console.log(categories);
     useEffect(() => {
         if (dataGetCategories) {
             setCategories(dataGetCategories.category);
@@ -14,6 +14,9 @@ const Categories = () => {
     }, [dataGetCategories])
 
     return (
+        <>
+        {loadingGetCategories ? <CategoriesSkeleton /> 
+        :
         <div className="bg-blue-light shadow-2xl rounded-lg p-8">
             <h3 className="text-xl font-semibold text-grey mb-8 border-b pb-4">Categories</h3>
             {categories.map((category, index) => (
@@ -22,6 +25,8 @@ const Categories = () => {
                 </Link>
             ))}
         </div>
+        }
+        </>
     )
 }
 

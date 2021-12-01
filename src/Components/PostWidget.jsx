@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment';
 import { useGetRecentPost, useGetSimilarPost } from '../Hooks';
+import { PostWidgetSkeleton } from '.';
 
 function PostWidget({ categories, slug }) {
     const [relatedPost, setRelatedPost] = useState([]);
     const { errorGetRecentPost, loadingGetRecentPost, dataGetRecentPost } = useGetRecentPost();
     const { errorGetSimilarPost, loadingGetSimilarPost, dataGetSimilarPost } = useGetSimilarPost(categories, slug);
 
-    // console.log(categories);
-    // console.log(slug);
-    // console.log(relatedPost);
     useEffect(() => {
         if (dataGetRecentPost) {
             setRelatedPost(dataGetRecentPost.post);
@@ -21,6 +19,9 @@ function PostWidget({ categories, slug }) {
     }, [dataGetRecentPost, dataGetSimilarPost])
 
     return (
+        <>
+        {loadingGetRecentPost || loadingGetSimilarPost ? <PostWidgetSkeleton />
+        :
         <div className="bg-blue-light shadow-2xl rounded-lg p-8 mb-8">
             <h3 className="text-xl font-semibold text-grey mb-8 border-b pb-4">{slug ? 'Related Posts' : 'Recent Posts'}</h3>
             {relatedPost?.map((item) => (
@@ -37,6 +38,8 @@ function PostWidget({ categories, slug }) {
                 </div>
             ))}
         </div>
+        }
+        </>
     )
 }
 

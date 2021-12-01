@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { Header, PostCard, Categories } from '../Components'
+import { Header, PostCard, Categories, PostCardSkeleton } from '../Components'
 import { useGetPostCategory } from '../Hooks';
 
 function Category() {
@@ -20,6 +20,7 @@ function Category() {
         <div className="container mx-auto px-10 mb-8 top-32">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 <div className="lg:col-span-8 col-span-1">
+                    {loadingGetPostCategory && <PostCardSkeleton />}
                     {data?.map((item) => (
                         <PostCard post={item} key={item.title} />
                     ))}

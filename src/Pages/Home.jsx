@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { PostCard, Categories, PostWidget, Header } from '../Components';
+import { PostCard, Categories, PostWidget, Header, PostCardSkeleton } from '../Components';
 import { useGetPost } from '../Hooks';
 import FeaturedPosts from '../Section/FeaturedPosts';
 
@@ -13,8 +13,6 @@ function Home() {
         }
     }, [dataGetPost])
 
-    // console.log(data);
-
     return (
         <>
         <Header />
@@ -22,6 +20,7 @@ function Home() {
             <FeaturedPosts />
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 <div className="lg:col-span-8 col-span-1">
+                    {loadingGetPost && <PostCardSkeleton />}
                     {data?.map((item) => (
                         <PostCard post={item} key={item.title} />
                     ))}
