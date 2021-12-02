@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import './App.css';
 import { LoginCard } from './Components';
-import { Category, CommentDetail, Dashboard, EditPost, Home, NewPost, PostDetails, Posts } from './Pages';
+import { Category, CommentDetail, Dashboard, EditPost, Home, NewPost, Page404, PostDetails, Posts } from './Pages';
 import { persistor, store } from './Redux/store';
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
               <Route path='/admin/add-post' element={<NewPost />}/>
               <Route path='/admin/posts/edit/:slug' element={<EditPost />}/>
               <Route path='/admin/dashboard/comments' element={<CommentDetail />}/>
+              <Route path='*' element={<Page404 />}/>
             </Routes>
           </Router>
         </PersistGate>
