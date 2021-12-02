@@ -27,7 +27,7 @@ export const LOAD_POST = gql`
 
 export const LOAD_RECENT_POST = gql`
     query getRecentPost {
-        post(order_by: {created_at: asc}, limit: 3) {
+        post(order_by: {created_at: desc}, limit: 3) {
             title
             created_at
             slug
