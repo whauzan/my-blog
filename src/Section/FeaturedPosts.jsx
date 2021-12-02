@@ -3,6 +3,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { FeaturedPostCard } from '../Components';
 import { useGetFeaturedPost } from '../Hooks';
+import { Page500 } from '../Pages';
 
 const responsive = {
     superLargeDesktop: {
@@ -51,6 +52,9 @@ function FeaturedPosts() {
     );
 
     return (
+        <>
+        {errorGetFeaturedPost ? <Page500 />
+        :
         <div className="mb-8">
             <Carousel infinite customLeftArrow={customLeftArrow} customRightArrow={customRightArrow} responsive={responsive} itemClass="px-4">
                 {featuredPost?.map((post, index) => (
@@ -58,6 +62,8 @@ function FeaturedPosts() {
                 ))}
             </Carousel>
         </div>
+        }
+        </>
     )
 }
 

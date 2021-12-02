@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { AdjacentPostCard, AdjacentPostSkeleton } from '../Components';
 import { useGetNextPost, useGetPreviousPost } from '../Hooks';
+import { Page500 } from '../Pages';
 
 function AdjacentPosts( created_at ) {
     const { errorGetPreviousPost, loadingGetPreviousPost, dataGetPreviousPost } = useGetPreviousPost(created_at);
@@ -18,21 +19,26 @@ function AdjacentPosts( created_at ) {
 
     return (
         <>
-        {loadingGetNextPost || loadingGetPreviousPost ? 
-            <AdjacentPostSkeleton />
+        {errorGetNextPost || errorGetPreviousPost ? <Page500 />
         :
-        <div className="grid grid-cols-1 lg:grid-cols-8 gap-12 mb-8">
-            {previousPost? 
-                <div className={`${nextPost ? 'col-span-1 lg:col-span-4' : 'col-span-1 lg:col-span-8'} adjacent-post rounded-lg relative h-72`}>
-                    <AdjacentPostCard post={previousPost} position="LEFT" />
-                </div>
-            : null }
-            {nextPost ?
-                <div className={`${previousPost ? 'col-span-1 lg:col-span-4' : 'col-span-1 lg:col-span-8'} adjacent-post rounded-lg relative h-72`}>
-                    <AdjacentPostCard post={nextPost} position="RIGHT" />
-                </div>
-            : null}
-        </div>
+            <>
+            {loadingGetNextPost || loadingGetPreviousPost ? 
+                <AdjacentPostSkeleton />
+            :
+            <div className="grid grid-cols-1 lg:grid-cols-8 gap-12 mb-8">
+                {previousPost? 
+                    <div className={`${nextPost ? 'col-span-1 lg:col-span-4' : 'col-span-1 lg:col-span-8'} adjacent-post rounded-lg relative h-72`}>
+                        <AdjacentPostCard post={previousPost} position="LEFT" />
+                    </div>
+                : null }
+                {nextPost ?
+                    <div className={`${previousPost ? 'col-span-1 lg:col-span-4' : 'col-span-1 lg:col-span-8'} adjacent-post rounded-lg relative h-72`}>
+                        <AdjacentPostCard post={nextPost} position="RIGHT" />
+                    </div>
+                : null}
+            </div>
+            }
+            </>
         }
         </>
     )
